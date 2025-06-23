@@ -11,9 +11,8 @@ contract Campaign {
 
     address public manager;
     uint public minimumContribiution;
-    address[] public approvers;
+    mapping(address => bool) public approvers;
     Request[] public requests;
-    mapping(address => uint) public balances;
 
     constructor(uint minimum) {
         manager = msg.sender;
@@ -22,9 +21,11 @@ contract Campaign {
 
     function contribiute() public payable minimumDonation {
         approvers.push(msg.sender);
+        approvers[msg.sender] = true;
     }
 
     function createRequest(string memory description, uint value, address recipient) public onlyManager {
+        require(approvers[msg.sender]);
         Request memory newRequest = Request({
             description: description,
             value: value,
