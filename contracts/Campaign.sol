@@ -7,6 +7,8 @@ contract Campaign {
         uint value;
         address recipient;
         bool complete;
+        mapping(address => bool) approvals;
+        uint approvalCount;
     }
 
     address public manager;
