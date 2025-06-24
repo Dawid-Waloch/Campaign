@@ -2,8 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const solc = require('solc');
 
-const lotteryPath = path.resolve(__dirname, 'contracts', 'Campaign.sol');
-const source = fs.readFileSync(lotteryPath, 'utf-8');
+const campaignPath = path.resolve(__dirname, 'contracts', 'Campaign.sol');
+const source = fs.readFileSync(campaignPath, 'utf-8');
 
 const input = {
   language: 'Solidity',
