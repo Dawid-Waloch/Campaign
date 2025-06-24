@@ -6,7 +6,12 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "format": "prettier --write ."
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "semi": true
   },
   "keywords": [],
   "author": "",
@@ -19,5 +24,8 @@
     "mocha": "^11.6.0",
     "solc": "^0.8.30",
     "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.0"
   }
 }
