@@ -1,31 +1,32 @@
 {
-  "name": "campaign",
-  "version": "1.0.0",
-  "main": "compile.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "mocha",
-    "format": "prettier --write ."
-  },
-  "prettier": {
-    "tabWidth": 4,
-    "semi": true
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@truffle/hdwallet-provider": "^2.1.15",
-    "dotenv": "^16.5.0",
-    "ganache": "^7.9.2",
-    "mocha": "^11.6.0",
-    "solc": "^0.8.30",
-    "web3": "^4.16.0"
-  },
-  "devDependencies": {
-    "prettier": "^3.6.0"
-  }
+    "name": "campaign",
+    "version": "1.0.0",
+    "main": "compile.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "mocha",
+        "format": "prettier --write ."
+    },
+    "prettier": {
+        "singleQuote": true,
+        "tabWidth": 4,
+        "semi": true
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@truffle/hdwallet-provider": "^2.1.15",
+        "dotenv": "^16.5.0",
+        "ganache": "^7.9.2",
+        "mocha": "^11.6.0",
+        "solc": "^0.8.30",
+        "web3": "^4.16.0"
+    },
+    "devDependencies": {
+        "prettier": "^3.6.0"
+    }
 }

@@ -6,8 +6,8 @@ const { abi, evm } = require('./compile');
 
 const provider = new HDWalletProvider(
     process.env.MNEUMONIC,
-    process.env.ENDPOINT
-)
+    process.env.ENDPOINT,
+);
 const web3 = new Web3(provider);
 
 const deploy = async () => {
@@ -22,5 +22,5 @@ const deploy = async () => {
     console.log(JSON.stringify(abi));
     console.log('Contract deployed to', result.options.address);
     provider.engine.stop();
-}
+};
 deploy();
