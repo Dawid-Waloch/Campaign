@@ -7,7 +7,8 @@
     },
     "scripts": {
         "test": "mocha",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "dev": "next dev"
     },
     "prettier": {
         "singleQuote": true,
@@ -23,6 +24,7 @@
         "dotenv": "^16.5.0",
         "ganache": "^7.9.2",
         "mocha": "^11.6.0",
+        "next": "^15.3.4",
         "solc": "^0.8.30",
         "web3": "^4.16.0"
     },
