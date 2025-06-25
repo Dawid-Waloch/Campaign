@@ -25,17 +25,17 @@ contract Campaign {
     }
 
     address public manager;
-    uint public minimumContribiution;
+    uint public minimumContribution;
     mapping(address => bool) public approvers;
     Request[] public requests;
     uint public approversCount;
 
     constructor(uint minimum, address creator) {
         manager = creator;
-        minimumContribiution = minimum;
+        minimumContribution = minimum;
     }
 
-    function contribiute() public payable minimumDonation {
+    function contribute() public payable minimumDonation {
         require(!approvers[msg.sender], "Already contributed");
 
         approvers[msg.sender] = true;
@@ -78,7 +78,7 @@ contract Campaign {
     }
 
     modifier minimumDonation() {
-        require(msg.value >= minimumContribiution);
+        require(msg.value >= minimumContribution);
         _;
     }
 

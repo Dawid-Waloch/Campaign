@@ -42,7 +42,7 @@ describe('Campaign', () => {
     });
 
     it('allows people to contribute money and marks them as approvers', async () => {
-        await campaign.methods.contribiute().send({
+        await campaign.methods.contribute().send({
             value: '200',
             from: accounts[1]
         });
@@ -56,7 +56,7 @@ describe('Campaign', () => {
 
     it('requires a minimum contribution', async () => {
         try {
-            await campaign.methods.contribiute().send({
+            await campaign.methods.contribute().send({
                 value: '5',
                 from: accounts[1]
             });
@@ -67,7 +67,7 @@ describe('Campaign', () => {
     });
 
     it('allows a manager to make a payment request', async () => {
-        await campaign.methods.contribiute().send({
+        await campaign.methods.contribute().send({
             value: '200',
             from: accounts[0]
         });
