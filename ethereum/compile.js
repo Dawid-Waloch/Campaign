@@ -12,16 +12,16 @@ const input = {
     language: 'Solidity',
     sources: {
         'Campaign.sol': {
-            content: source
-        }
+            content: source,
+        },
     },
     settings: {
         outputSelection: {
             '*': {
-                '*': ['abi', 'evm.bytecode']
-            }
-        }
-    }
+                '*': ['abi', 'evm.bytecode'],
+            },
+        },
+    },
 };
 
 const output = JSON.parse(solc.compile(JSON.stringify(input)));
@@ -31,7 +31,7 @@ fs.ensureDirSync(buildPath);
 for (let contract in output.contracts['Campaign.sol']) {
     fs.outputJsonSync(
         path.resolve(__dirname, 'build', contract.replace(':', '') + '.json'),
-        output.contracts['Campaign.sol'][contract]
+        output.contracts['Campaign.sol'][contract],
     );
 }
 

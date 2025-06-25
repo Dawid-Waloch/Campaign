@@ -16,18 +16,15 @@ beforeEach(async () => {
 
     factory = await new web3.eth.Contract(compiledFactory.abi)
         .deploy({ data: compiledFactory.evm.bytecode.object })
-        .send({ from: accounts[0], gas: '6000000'});
+        .send({ from: accounts[0], gas: '6000000' });
 
     await factory.methods.createCampaign('100').send({
         from: accounts[0],
-        gas: '1000000'
+        gas: '1000000',
     });
 
     [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
-    campaign = new web3.eth.Contract(
-        compiledCampaign.abi,
-        campaignAddress
-    );
+    campaign = new web3.eth.Contract(compiledCampaign.abi, campaignAddress);
 });
 
 describe('Campaign', () => {
@@ -44,13 +41,15 @@ describe('Campaign', () => {
     it('allows people to contribute money and marks them as approvers', async () => {
         await campaign.methods.contribute().send({
             value: '200',
-            from: accounts[1]
+            from: accounts[1],
         });
-        
+
         const approversCount = await campaign.methods.approversCount().call();
         assert.equal(1, approversCount);
 
-        const isContributor = await campaign.methods.approvers(accounts[1]).call();
+        const isContributor = await campaign.methods
+            .approvers(accounts[1])
+            .call();
         assert(isContributor);
     });
 
@@ -58,7 +57,7 @@ describe('Campaign', () => {
         try {
             await campaign.methods.contribute().send({
                 value: '5',
-                from: accounts[1]
+                from: accounts[1],
             });
             assert(false);
         } catch (err) {
@@ -69,22 +68,26 @@ describe('Campaign', () => {
     it('processes request', async () => {
         await campaign.methods.contribute().send({
             value: web3.utils.toWei(10, 'ether'),
-            from: accounts[0]
+            from: accounts[0],
         });
 
         await campaign.methods
-            .createRequest('Buy batteries', web3.utils.toWei(5, 'ether'), accounts[1])
+            .createRequest(
+                'Buy batteries',
+                web3.utils.toWei(5, 'ether'),
+                accounts[1],
+            )
             .send({
                 from: accounts[0],
-                gas: '1000000'
+                gas: '1000000',
             });
-        
+
         await campaign.methods.approveRequest(0).send({
-            from: accounts[0]
+            from: accounts[0],
         });
 
         await campaign.methods.finalizeRequest(0).send({
-            from: accounts[0]
+            from: accounts[0],
         });
 
         let balance = await web3.eth.getBalance(accounts[1]);
