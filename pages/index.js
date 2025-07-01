@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
 import Link from 'next/link';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -29,12 +29,18 @@ const CampaignCard = ({ address }) => (
 const CampaginIndex = ({ campaigns }) => {
     return (
         <div>
-            <h2>Deployed campaigns</h2>
+            <h2>Open campaigns</h2>
             <Card.Group>
                 {campaigns.map((address) => (
                     <CampaignCard key={address} address={address} />
                 ))}
             </Card.Group>
+            <Button
+                content="Create campaign"
+                icon="add circle"
+                labelPosition="left"
+                primary
+            />
         </div>
     );
 };
