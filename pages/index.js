@@ -4,6 +4,7 @@ import Link from 'next/link';
 import 'semantic-ui-css/semantic.min.css';
 
 import factory from '../ethereum/factory';
+import Layout from '../components/Layout';
 
 export const getStaticProps = async () => {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
@@ -28,20 +29,22 @@ const CampaignCard = ({ address }) => (
 
 const CampaginIndex = ({ campaigns }) => {
     return (
-        <div>
-            <h2>Open campaigns</h2>
-            <Card.Group>
-                {campaigns.map((address) => (
-                    <CampaignCard key={address} address={address} />
-                ))}
-            </Card.Group>
-            <Button
-                content="Create campaign"
-                icon="add circle"
-                labelPosition="left"
-                primary
-            />
-        </div>
+        <Layout>
+            <div>
+                <h2>Open campaigns</h2>
+                <Card.Group>
+                    {campaigns.map((address) => (
+                        <CampaignCard key={address} address={address} />
+                    ))}
+                </Card.Group>
+                <Button
+                    content="Create campaign"
+                    icon="add circle"
+                    labelPosition="left"
+                    primary
+                />
+            </div>
+        </Layout>
     );
 };
 
