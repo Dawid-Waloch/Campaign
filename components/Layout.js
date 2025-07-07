@@ -1,13 +1,14 @@
 import React from "react";
 
 import Header from './Header';
+import { StyledContainer } from "./LayoutStyled";
 
 const Layout = props => {
     return (
-        <div>
+        <StyledContainer>
             <Header />
             {props.children}
-        </div>
+        </StyledContainer>
     );
 };
 
