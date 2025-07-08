@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Input } from "semantic-ui-react";
+import { Form, Button, Input, Message } from "semantic-ui-react";
 import 'semantic-ui-css/semantic.min.css';
 
 import Layout from "../../components/Layout";
@@ -8,22 +8,32 @@ import web3 from "../../ethereum/web3";
 
 const NewCampaign = () => {
     const [minimumContribution, setMinimumContribution] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const onSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
+        setErrorMessage('');
+        
+        try {
+            const accounts = await web3.eth.getAccounts();
+            await factory.methods
+                .createCampaign(minimumContribution)
+                .send({
+                    from: accounts[0]
+                });
+        } catch (err) {
+            setErrorMessage(err.message);
+        }
 
-        const accounts = await web3.eth.getAccounts();
-        await factory.methods
-            .createCampaign(minimumContribution)
-            .send({
-                from: accounts[0]
-            });
+        setLoading(false);
     };
 
     return (
         <Layout>
             <h3>Create a campaign</h3>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={onSubmit} error={!!errorMessage}>
                 <Form.Field>
                     <label>Minimum Contribution</label>
                     <Input
@@ -33,7 +43,12 @@ const NewCampaign = () => {
                         onChange={event => setMinimumContribution(event.target.value)}
                     />
                 </Form.Field>
-                <Button primary type="submit">Create</Button>
+                <Message
+                    error
+                    header="Oops!"
+                    content={errorMessage}
+                />
+                <Button primary loading={loading} type="submit">Create</Button>
             </Form>
         </Layout>
     );
