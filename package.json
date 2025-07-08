@@ -8,7 +8,7 @@
     "scripts": {
         "test": "mocha",
         "format": "prettier --write .",
-        "dev": "node server.js"
+        "dev": "next dev"
     },
     "prettier": {
         "singleQuote": true,
