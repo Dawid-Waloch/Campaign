@@ -1,8 +1,8 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React from 'react';
+import { useRouter } from 'next/router';
 
-import Layout from "../../components/Layout";
-import Campaign from "../../ethereum/campaign";
+import Layout from '../../components/Layout';
+import Campaign from '../../ethereum/campaign';
 
 const CampaignShow = () => {
     const router = useRouter();
@@ -10,8 +10,7 @@ const CampaignShow = () => {
 
     const getStaticProps = async () => {
         const campaign = Campaign(address);
-        
-    }
+    };
 
     return (
         <Layout>

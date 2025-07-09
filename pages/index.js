@@ -11,9 +11,9 @@ export const getStaticProps = async () => {
     return {
         props: {
             campaigns,
-        }
+        },
     };
-}
+};
 
 const CampaignCard = ({ address }) => (
     <Card fluid>
@@ -40,7 +40,7 @@ const CampaginIndex = ({ campaigns }) => {
                         primary
                     />
                 </Link>
-                
+
                 <Card.Group>
                     {campaigns.map((address) => (
                         <CampaignCard key={address} address={address} />

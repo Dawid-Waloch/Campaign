@@ -1,30 +1,28 @@
-import React, { useState } from "react";
-import { Form, Button, Input, Message } from "semantic-ui-react";
-import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import { Form, Button, Input, Message } from 'semantic-ui-react';
+import { useRouter } from 'next/router';
 
-import Layout from "../../components/Layout";
-import factory from "../../ethereum/factory";
-import web3 from "../../ethereum/web3";
+import Layout from '../../components/Layout';
+import factory from '../../ethereum/factory';
+import web3 from '../../ethereum/web3';
 
 const NewCampaign = () => {
     const [minimumContribution, setMinimumContribution] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
-    
+
     const router = useRouter();
 
     const onSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
         setErrorMessage('');
-        
+
         try {
             const accounts = await web3.eth.getAccounts();
-            await factory.methods
-                .createCampaign(minimumContribution)
-                .send({
-                    from: accounts[0]
-                });
+            await factory.methods.createCampaign(minimumContribution).send({
+                from: accounts[0],
+            });
 
             router.push('/');
         } catch (err) {
@@ -44,15 +42,15 @@ const NewCampaign = () => {
                         label="wei"
                         labelPosition="right"
                         value={minimumContribution}
-                        onChange={event => setMinimumContribution(event.target.value)}
+                        onChange={(event) =>
+                            setMinimumContribution(event.target.value)
+                        }
                     />
                 </Form.Field>
-                <Message
-                    error
-                    header="Oops!"
-                    content={errorMessage}
-                />
-                <Button primary loading={loading} type="submit">Create</Button>
+                <Message error header="Oops!" content={errorMessage} />
+                <Button primary loading={loading} type="submit">
+                    Create
+                </Button>
             </Form>
         </Layout>
     );
