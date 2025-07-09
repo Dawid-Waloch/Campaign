@@ -32,13 +32,16 @@ const CampaginIndex = ({ campaigns }) => {
         <Layout>
             <div>
                 <h2>Open campaigns</h2>
-                <Button
-                    floated="right"
-                    content="Create campaign"
-                    icon="add circle"
-                    labelPosition="left"
-                    primary
-                />
+                <Link href={'campaigns/new'}>
+                    <Button
+                        floated="right"
+                        content="Create campaign"
+                        icon="add circle"
+                        labelPosition="left"
+                        primary
+                    />
+                </Link>
+                
                 <Card.Group>
                     {campaigns.map((address) => (
                         <CampaignCard key={address} address={address} />
