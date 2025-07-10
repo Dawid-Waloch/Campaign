@@ -1,10 +1,11 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Grid } from 'semantic-ui-react';
 
 import Layout from '../../components/Layout';
 import Campaign from '../../ethereum/campaign';
 import web3 from '../../ethereum/web3';
 import CardItem from '../../components/CardItem';
+import ContributeForm from '../../components/ContributeForm';
 
 export const getServerSideProps  = async (context) => {
     const { address } = context.query;
@@ -13,6 +14,7 @@ export const getServerSideProps  = async (context) => {
 
     return {
         props: {
+            address: address,
             minimumContribution: summary[0].toString(),
             balance: summary[1].toString(),
             requestsCount: summary[2].toString(),
@@ -22,7 +24,8 @@ export const getServerSideProps  = async (context) => {
     };
 };
 
-const CampaignShow = ({ 
+const CampaignShow = ({
+    address,
     minimumContribution,
     balance,
     requestsCount,
@@ -61,13 +64,18 @@ const CampaignShow = ({
     return (
         <Layout>
             <h2>Campaign show</h2>
-            
-            <Card.Group>
-                {cardsData.map((card, index) => (
-                    <CardItem key={index} {...card} />
-                ))}
-            </Card.Group>
-
+            <Grid>
+                <Grid.Column width={10}>
+                    <Card.Group>
+                        {cardsData.map((card, index) => (
+                            <CardItem key={index} {...card} />
+                        ))}
+                    </Card.Group>
+                </Grid.Column>
+                <Grid.Column width={6}>
+                    <ContributeForm address={address} />
+                </Grid.Column>
+            </Grid>
         </Layout>
     );
 };
