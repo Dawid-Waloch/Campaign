@@ -80,7 +80,7 @@ const CampaignShow = ({
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column>
-                        <Link href={`${address}/requests`}>
+                        <Link href={`/campaigns/${address}/requests`}>
                             <Button primary>
                                 View Requests
                             </Button>
