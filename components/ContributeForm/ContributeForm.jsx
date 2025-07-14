@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button, Form, Input } from "semantic-ui-react";
 import { useRouter } from "next/router";
 
-import Campaign from "../ethereum/campaign";
-import web3 from "../ethereum/web3";
-import { ErrorMessageStyled } from "./ErrorMessageStyled";
+import Campaign from "../../ethereum/campaign";
+import web3 from "../../ethereum/web3";
+import { ErrorMessageStyled } from "./ContributeFormStyled";
 
 const ContributeForm = ({ address }) => {
     const [errorMessage, setErrorMessage] = useState('');

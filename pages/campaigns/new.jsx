@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Input, Message } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
-import Layout from '../../components/Layout';
+import Layout from '../../components/Layout/Layout';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 

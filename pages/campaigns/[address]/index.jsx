@@ -1,11 +1,12 @@
 import React from 'react';
-import { Card, Grid } from 'semantic-ui-react';
+import { Button, Card, Grid } from 'semantic-ui-react';
+import Link from 'next/link';
 
-import Layout from '../../../components/Layout';
+import Layout from '../../../components/Layout/Layout';
 import Campaign from '../../../ethereum/campaign';
 import web3 from '../../../ethereum/web3';
-import CardItem from '../../../components/CardItem';
-import ContributeForm from '../../../components/ContributeForm';
+import CardItem from '../../../components/CardItem/CardItem';
+import ContributeForm from '../../../components/ContributeForm/ContributeForm';
 
 export const getServerSideProps  = async (context) => {
     const { address } = context.query;
@@ -65,16 +66,27 @@ const CampaignShow = ({
         <Layout>
             <h2>Campaign show</h2>
             <Grid>
-                <Grid.Column width={10}>
-                    <Card.Group>
-                        {cardsData.map((card, index) => (
-                            <CardItem key={index} {...card} />
-                        ))}
-                    </Card.Group>
-                </Grid.Column>
-                <Grid.Column width={6}>
-                    <ContributeForm address={address} />
-                </Grid.Column>
+                <Grid.Row>
+                    <Grid.Column width={10}>
+                        <Card.Group>
+                            {cardsData.map((card, index) => (
+                                <CardItem key={index} {...card} />
+                            ))}
+                        </Card.Group>
+                    </Grid.Column>
+                    <Grid.Column width={6}>
+                        <ContributeForm address={address} />
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column>
+                        <Link href={`${address}/requests`}>
+                            <Button primary>
+                                View Requests
+                            </Button>
+                        </Link>
+                    </Grid.Column>
+                </Grid.Row>
             </Grid>
         </Layout>
     );

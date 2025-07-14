@@ -3,7 +3,7 @@ import { Card, Button } from 'semantic-ui-react';
 import Link from 'next/link';
 
 import factory from '../ethereum/factory';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 
 export const getStaticProps = async () => {
     const campaigns = await factory.methods.getDeployedCampaigns().call();

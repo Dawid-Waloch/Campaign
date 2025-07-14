@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CampaignShowCardStyled } from "./CampaignShowCardStyled";
+import { CampaignShowCardStyled } from "./CardItemStyled";
 import { Card } from "semantic-ui-react";
 
 const CardItem = ({ header, meta, description }) => (
