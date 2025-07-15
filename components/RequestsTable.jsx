@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableBody, TableCell, TableHeader, TableHeaderCell, TableRow } from "semantic-ui-react";
+import { Button, Table, TableBody, TableCell, TableHeader, TableHeaderCell, TableRow } from "semantic-ui-react";
 
 const RequestsTable = ({requests, approversCount}) => {
     return (
@@ -21,7 +21,9 @@ const RequestsTable = ({requests, approversCount}) => {
                         <TableCell>{request.amount}</TableCell>
                         <TableCell>{request.recipient}</TableCell>
                         <TableCell>{request.approvalCount}/{approversCount/2}</TableCell>
-                        <TableCell>{index}</TableCell>
+                        <TableCell>
+                            <Button success>Approve</Button>
+                        </TableCell>
                         <TableCell>{index}</TableCell>
                     </TableRow>
                 })};

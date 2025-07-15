@@ -10,7 +10,6 @@ const NewCampaign = () => {
     const [minimumContribution, setMinimumContribution] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
-
     const router = useRouter();
 
     const onSubmit = async (event) => {
