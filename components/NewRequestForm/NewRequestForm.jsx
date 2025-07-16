@@ -4,6 +4,7 @@ import { Button, Form, Input } from "semantic-ui-react";
 import web3 from "../../ethereum/web3";
 import Campaign from "../../ethereum/campaign";
 import ErrorMessageStyled from "./NewRequestFormStyled";
+import { useRouter } from "next/router";
 
 const NewRequestForm = ({ address }) => {
     const [description, setDescription] = useState('');
@@ -11,6 +12,7 @@ const NewRequestForm = ({ address }) => {
     const [recipient, setRecipient] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -28,7 +30,7 @@ const NewRequestForm = ({ address }) => {
         }
 
         setLoading(false);
-        
+        router.push('/');
     };
 
     return (
