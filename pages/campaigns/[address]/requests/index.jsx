@@ -40,7 +40,7 @@ export const getServerSideProps = async (context) => {
     };
 };
 
-const RequestIndex = ({ address, requests, requestsCount, approversCount }) => {
+const RequestIndex = ({ address, requests, approversCount }) => {
     return (
         <Layout>
             <h3>Requests</h3>
