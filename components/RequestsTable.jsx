@@ -4,7 +4,7 @@ import web3 from "../ethereum/web3";
 
 const RequestsTable = ({ requests, approversCount }) => {
     return (
-        <Table>
+        <Table celled>
         <TableHeader>
             <TableRow>
                 <TableHeaderCell>ID</TableHeaderCell>
