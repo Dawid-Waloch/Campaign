@@ -3,7 +3,7 @@ import Layout from "../../../../components/Layout/Layout";
 import Link from "next/link";
 import { Button } from "semantic-ui-react";
 
-import RequestsTable from "../../../../components/RequestsTable";
+import RequestsTable from "../../../../components/RequestsTable/RequestsTable";
 import web3 from "../../../../ethereum/web3";
 import Campaign from "../../../../ethereum/campaign";
 
@@ -48,7 +48,11 @@ const RequestIndex = ({ address, requests, approversCount }) => {
                 <Button primary>Add Request</Button>
             </Link>
             
-            <RequestsTable requests={requests} approversCount={approversCount} />
+            <RequestsTable
+                requests={requests}
+                approversCount={approversCount}
+                address={address}
+            />
         </Layout>
     )
 };
