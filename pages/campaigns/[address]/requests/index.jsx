@@ -12,6 +12,7 @@ export const getServerSideProps = async (context) => {
     const accounts = await web3.eth.getAccounts();
     const campaign = Campaign(address);
     const requestsCount = await campaign.methods.getRequestsCount().call();
+    const approversCount = await campaign.methods.approversCount().call();
 
     const requestsRaw = await Promise.all(
         Array(parseInt(requestsCount))
@@ -33,12 +34,13 @@ export const getServerSideProps = async (context) => {
         props: {
             address: address,
             requests: requests,
-            requestsCount: requestsCount.toString()
+            requestsCount: requestsCount.toString(),
+            approversCount: approversCount.toString()
         }
     };
 };
 
-const RequestIndex = ({ address, requests, requestsCount }) => {
+const RequestIndex = ({ address, requests, requestsCount, approversCount }) => {
     return (
         <Layout>
             <h3>Requests</h3>
@@ -46,7 +48,7 @@ const RequestIndex = ({ address, requests, requestsCount }) => {
                 <Button primary>Add Request</Button>
             </Link>
             
-            <RequestsTable requests={requests} />
+            <RequestsTable requests={requests} approversCount={approversCount} />
         </Layout>
     )
 };
