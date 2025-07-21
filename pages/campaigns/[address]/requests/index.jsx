@@ -4,12 +4,10 @@ import Link from "next/link";
 import { Button } from "semantic-ui-react";
 
 import RequestsTable from "../../../../components/RequestsTable/RequestsTable";
-import web3 from "../../../../ethereum/web3";
 import Campaign from "../../../../ethereum/campaign";
 
 export const getServerSideProps = async (context) => {
     const { address } = context.query;
-    const accounts = await web3.eth.getAccounts();
     const campaign = Campaign(address);
     const requestsCount = await campaign.methods.getRequestsCount().call();
     const approversCount = await campaign.methods.approversCount().call();
