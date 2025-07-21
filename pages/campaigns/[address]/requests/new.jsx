@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import Layout from "../../../../components/Layout/Layout";
-import NewRequestForm from "../../../../components/NewRequestForm/NewRequestForm";
-import { Button } from "semantic-ui-react";
-import Link from "next/link";
+import Layout from '../../../../components/Layout/Layout';
+import NewRequestForm from '../../../../components/NewRequestForm/NewRequestForm';
+import { Button } from 'semantic-ui-react';
+import Link from 'next/link';
 
 export const getServerSideProps = (context) => {
     const { address } = context.query;
 
     return {
         props: {
-            address
-        }
-    }
-}
+            address,
+        },
+    };
+};
 
 const NewRequest = ({ address }) => {
     return (

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Button, Form, Input } from "semantic-ui-react";
+import React, { useState } from 'react';
+import { Button, Form, Input } from 'semantic-ui-react';
 
-import web3 from "../../ethereum/web3";
-import Campaign from "../../ethereum/campaign";
-import ErrorMessageStyled from "./NewRequestFormStyled";
-import { useRouter } from "next/router";
+import web3 from '../../ethereum/web3';
+import Campaign from '../../ethereum/campaign';
+import ErrorMessageStyled from './NewRequestFormStyled';
+import { useRouter } from 'next/router';
 
 const NewRequestForm = ({ address }) => {
     const [description, setDescription] = useState('');
@@ -23,7 +23,11 @@ const NewRequestForm = ({ address }) => {
             const accounts = await web3.eth.getAccounts();
             const campaign = Campaign(address);
             await campaign.methods
-                .createRequest(description, web3.utils.toWei(amount, "ether"), recipient)
+                .createRequest(
+                    description,
+                    web3.utils.toWei(amount, 'ether'),
+                    recipient,
+                )
                 .send({ from: accounts[0] });
         } catch (error) {
             setErrorMessage(error.message);
@@ -39,27 +43,35 @@ const NewRequestForm = ({ address }) => {
                 <label>Description</label>
                 <Input
                     value={description}
-                    onChange={(event) => {setDescription(event.target.value)}}
+                    onChange={(event) => {
+                        setDescription(event.target.value);
+                    }}
                 />
             </Form.Field>
             <Form.Field>
                 <label>Amount in Ether</label>
-                <Input 
+                <Input
                     label="ether"
                     labelPosition="right"
                     value={amount}
-                    onChange={(event) => {setAmount(event.target.value)}}
+                    onChange={(event) => {
+                        setAmount(event.target.value);
+                    }}
                 />
             </Form.Field>
             <Form.Field>
                 <label>Recipient</label>
                 <Input
                     value={recipient}
-                    onChange={(event) => {setRecipient(event.target.value)}}
+                    onChange={(event) => {
+                        setRecipient(event.target.value);
+                    }}
                 />
             </Form.Field>
             <ErrorMessageStyled error header="Oops!" content={errorMessage} />
-            <Button primary loading={loading}>Create</Button>
+            <Button primary loading={loading}>
+                Create
+            </Button>
         </Form>
     );
 };

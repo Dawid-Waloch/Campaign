@@ -1,3 +1,3 @@
-import { ErrorMessageStyled } from "../ContributeForm/ContributeFormStyled";
+import { ErrorMessageStyled } from '../ContributeForm/ContributeFormStyled';
 
 export default ErrorMessageStyled;

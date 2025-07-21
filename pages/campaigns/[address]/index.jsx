@@ -8,7 +8,7 @@ import web3 from '../../../ethereum/web3';
 import CardItem from '../../../components/CardItem/CardItem';
 import ContributeForm from '../../../components/ContributeForm/ContributeForm';
 
-export const getServerSideProps  = async (context) => {
+export const getServerSideProps = async (context) => {
     const { address } = context.query;
     const campaign = Campaign(address);
     const summary = await campaign.methods.getSummary().call();
@@ -31,37 +31,41 @@ const CampaignShow = ({
     balance,
     requestsCount,
     approversCount,
-    manager
+    manager,
 }) => {
-
     const cardsData = [
         {
             header: manager,
             meta: 'Address of Manager',
-            description: 'The manager created this campaign and can create requests to withdraw money'
+            description:
+                'The manager created this campaign and can create requests to withdraw money',
         },
         {
             header: minimumContribution,
             meta: 'Minimum Contribution (wei)',
-            description: 'You must contribute at least this much wei to become an approver'
+            description:
+                'You must contribute at least this much wei to become an approver',
         },
         {
             header: requestsCount,
             meta: 'Number of Requests',
-            description: 'A request tries to withdraw money from the contract. Requests must be approved by approvers'
+            description:
+                'A request tries to withdraw money from the contract. Requests must be approved by approvers',
         },
         {
             header: approversCount,
             meta: 'Number of approvers',
-            description: 'Number of people who have already donated to this campaign'
+            description:
+                'Number of people who have already donated to this campaign',
         },
         {
             header: web3.utils.fromWei(balance, 'ether'),
             meta: 'Campaign Balance (ether)',
-            description: 'The balance is how much money this campaign has left to spend'
+            description:
+                'The balance is how much money this campaign has left to spend',
         },
     ];
-    
+
     return (
         <Layout>
             <Link href={`/`}>
@@ -84,9 +88,7 @@ const CampaignShow = ({
                 <Grid.Row>
                     <Grid.Column>
                         <Link href={`/campaigns/${address}/requests`}>
-                            <Button primary>
-                                View Requests
-                            </Button>
+                            <Button primary>View Requests</Button>
                         </Link>
                     </Grid.Column>
                 </Grid.Row>

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Button, Form, Input } from "semantic-ui-react";
-import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import { Button, Form, Input } from 'semantic-ui-react';
+import { useRouter } from 'next/router';
 
-import Campaign from "../../ethereum/campaign";
-import web3 from "../../ethereum/web3";
-import { ErrorMessageStyled } from "./ContributeFormStyled";
+import Campaign from '../../ethereum/campaign';
+import web3 from '../../ethereum/web3';
+import { ErrorMessageStyled } from './ContributeFormStyled';
 
 const ContributeForm = ({ address }) => {
     const [errorMessage, setErrorMessage] = useState('');
@@ -22,7 +22,7 @@ const ContributeForm = ({ address }) => {
             const accounts = await web3.eth.getAccounts();
             await campaign.methods.contribute().send({
                 from: accounts[0],
-                value: web3.utils.toWei(contributionAmount, 'ether')
+                value: web3.utils.toWei(contributionAmount, 'ether'),
             });
 
             router.replace(router.asPath);
@@ -31,7 +31,7 @@ const ContributeForm = ({ address }) => {
         }
 
         setLoading(false);
-    }
+    };
 
     return (
         <Form onSubmit={onSubmit} error={!!errorMessage}>
@@ -41,11 +41,15 @@ const ContributeForm = ({ address }) => {
                     label="ether"
                     labelPosition="right"
                     value={contributionAmount}
-                    onChange={(event) => {setContributionAmount(event.target.value)}}
+                    onChange={(event) => {
+                        setContributionAmount(event.target.value);
+                    }}
                 />
             </Form.Field>
             <ErrorMessageStyled error header="Oops!" content={errorMessage} />
-            <Button primary loading={loading}>Contribute</Button>
+            <Button primary loading={loading}>
+                Contribute
+            </Button>
         </Form>
     );
 };
