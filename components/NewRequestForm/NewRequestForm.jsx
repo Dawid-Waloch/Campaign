@@ -30,7 +30,7 @@ const NewRequestForm = ({ address }) => {
         }
 
         setLoading(false);
-        router.push('/');
+        router.push(`/campaigns/${address}/requests`);
     };
 
     return (
