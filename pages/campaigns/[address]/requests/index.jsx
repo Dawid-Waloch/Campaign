@@ -5,6 +5,7 @@ import { Button } from "semantic-ui-react";
 
 import RequestsTable from "../../../../components/RequestsTable/RequestsTable";
 import Campaign from "../../../../ethereum/campaign";
+import AddRequestButtonStyled from "../../../../components/AddRequestButtonStyled";
 
 export const getServerSideProps = async (context) => {
     const { address } = context.query;
@@ -46,7 +47,7 @@ const RequestIndex = ({ address, requests, approversCount }) => {
             </Link>
             <h3>Requests</h3>
             <Link href={`/campaigns/${address}/requests/new`}>
-                <Button primary>Add Request</Button>
+                <AddRequestButtonStyled primary floated="right">Add Request</AddRequestButtonStyled>
             </Link>
             
             <RequestsTable
