@@ -66,7 +66,7 @@ contract Campaign {
         Request storage request = requests[index];
 
         require(!request.complete);
-        require((approversCount / 2) < request.approvalCount);
+        require(request.approvalCount * 2 >= approversCount);
 
         payable(request.recipient).transfer(request.value);
         request.complete = true;
