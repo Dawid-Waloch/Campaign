@@ -18,7 +18,7 @@ export const getServerSideProps = (context) => {
 const NewRequest = ({ address }) => {
     return (
         <Layout>
-            <Link href={`campaigns/${address}/requests`}>
+            <Link href={`/campaigns/${address}/requests`}>
                 <Button primary>Back</Button>
             </Link>
             <h3>Create a request</h3>

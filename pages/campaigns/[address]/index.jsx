@@ -64,6 +64,9 @@ const CampaignShow = ({
     
     return (
         <Layout>
+            <Link href={`/`}>
+                <Button primary>Back</Button>
+            </Link>
             <h2>Campaign show</h2>
             <Grid>
                 <Grid.Row>

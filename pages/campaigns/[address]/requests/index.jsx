@@ -41,6 +41,9 @@ export const getServerSideProps = async (context) => {
 const RequestIndex = ({ address, requests, approversCount }) => {
     return (
         <Layout>
+            <Link href={`/campaigns/${address}`}>
+                <Button primary>Back</Button>
+            </Link>
             <h3>Requests</h3>
             <Link href={`/campaigns/${address}/requests/new`}>
                 <Button primary>Add Request</Button>
