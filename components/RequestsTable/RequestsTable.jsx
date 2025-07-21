@@ -40,7 +40,7 @@ const RequestsTable = ({
         }
 
         setLoadingApproveIndex(null);
-        router.reload();
+        router.replace(router.asPath);
     };
 
     const onFinalize = async (index) => {
@@ -58,7 +58,7 @@ const RequestsTable = ({
         }
 
         setLoadingFinalizeIndex(null);
-        router.reload();
+        router.replace(router.asPath);
     };
 
     return (

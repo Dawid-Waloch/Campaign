@@ -1,11 +1,11 @@
-import React from "react";
-import Layout from "../../../../components/Layout/Layout";
-import Link from "next/link";
-import { Button } from "semantic-ui-react";
+import React from 'react';
+import Layout from '../../../../components/Layout/Layout';
+import Link from 'next/link';
+import { Button } from 'semantic-ui-react';
 
-import RequestsTable from "../../../../components/RequestsTable/RequestsTable";
-import Campaign from "../../../../ethereum/campaign";
-import AddRequestButtonStyled from "../../../../components/AddRequestButtonStyled";
+import RequestsTable from '../../../../components/RequestsTable/RequestsTable';
+import Campaign from '../../../../ethereum/campaign';
+import AddRequestButtonStyled from '../../../../components/AddRequestButtonStyled';
 
 export const getServerSideProps = async (context) => {
     const { address } = context.query;
@@ -18,7 +18,7 @@ export const getServerSideProps = async (context) => {
             .fill()
             .map((_, index) => {
                 return campaign.methods.requests(index).call();
-            })
+            }),
     );
 
     const requests = requestsRaw.map((request) => ({
@@ -26,7 +26,7 @@ export const getServerSideProps = async (context) => {
         value: request.value.toString(),
         recipient: request.recipient,
         complete: request.complete,
-        approvalCount: request.approvalCount.toString()
+        approvalCount: request.approvalCount.toString(),
     }));
 
     return {
@@ -34,12 +34,12 @@ export const getServerSideProps = async (context) => {
             address: address,
             requests: requests,
             requestsCount: requestsCount.toString(),
-            approversCount: approversCount.toString()
-        }
+            approversCount: approversCount.toString(),
+        },
     };
 };
 
-const RequestIndex = ({ address, requests, approversCount }) => {
+const RequestIndex = ({ address, requests, approversCount, requestsCount }) => {
     return (
         <Layout>
             <Link href={`/campaigns/${address}`}>
@@ -47,16 +47,19 @@ const RequestIndex = ({ address, requests, approversCount }) => {
             </Link>
             <h3>Requests</h3>
             <Link href={`/campaigns/${address}/requests/new`}>
-                <AddRequestButtonStyled primary floated="right">Add Request</AddRequestButtonStyled>
+                <AddRequestButtonStyled primary floated="right">
+                    Add Request
+                </AddRequestButtonStyled>
             </Link>
-            
+
             <RequestsTable
                 requests={requests}
                 approversCount={approversCount}
                 address={address}
+                requestsCount={requestsCount}
             />
         </Layout>
-    )
+    );
 };
 
 export default RequestIndex;
