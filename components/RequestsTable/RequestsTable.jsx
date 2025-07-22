@@ -63,13 +63,6 @@ const RequestsTable = ({
 
     return (
         <>
-            {errorMessage && (
-                <ErrorMessageStyled
-                    error
-                    header="Oops!"
-                    content={errorMessage}
-                />
-            )}
             <Table celled>
                 <TableHeader>
                     <TableRow>
@@ -133,6 +126,13 @@ const RequestsTable = ({
                 </TableBody>
             </Table>
             <div>Found {requestsCount} requests.</div>
+            {errorMessage && (
+                <ErrorMessageStyled
+                    error
+                    header="Oops!"
+                    content={errorMessage}
+                />
+            )}
         </>
     );
 };
