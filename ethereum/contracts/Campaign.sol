@@ -55,8 +55,8 @@ contract Campaign {
     function approveRequest(uint index) public {
         Request storage request = requests[index];
 
-        require(approvers[msg.sender]);
-        require(!request.approvals[msg.sender]);
+        require(approvers[msg.sender], "You aren't a part of campaign");
+        require(!request.approvals[msg.sender], "You have already approved request");
 
         request.approvals[msg.sender] = true;
         request.approvalCount++;
@@ -65,8 +65,8 @@ contract Campaign {
     function finalizeRequest(uint index) public onlyManager {
         Request storage request = requests[index];
 
-        require(!request.complete);
-        require(request.approvalCount * 2 >= approversCount);
+        require(!request.complete, "Request already completed");
+        require(request.approvalCount * 2 >= approversCount, "Not enough approvals");
 
         payable(request.recipient).transfer(request.value);
         request.complete = true;
@@ -89,12 +89,12 @@ contract Campaign {
     }
 
     modifier onlyManager() {
-        require(msg.sender == manager);
+        require(msg.sender == manager, "You aren't a manager");
         _;
     }
 
     modifier minimumDonation() {
-        require(msg.value >= minimumContribution);
+        require(msg.value >= minimumContribution, "You try to join to campaign with less contribution than is required");
         _;
     }
 
