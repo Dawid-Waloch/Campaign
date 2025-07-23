@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../../../../components/Layout/Layout';
 import Link from 'next/link';
 import { Button } from 'semantic-ui-react';
@@ -40,24 +40,47 @@ export const getServerSideProps = async (context) => {
 };
 
 const RequestIndex = ({ address, requests, approversCount, requestsCount }) => {
+    const [completedRequestsSection, useCompletedRequestsSection] = useState(false)
+    const completedRequests = requests.filter((request) => request.complete);
+    const completedRequestsFound = completedRequests.length;
+    const uncompletedRequests = requests.filter((request) => !request.complete);
+    const uncompletedRequestsFound = uncompletedRequests.length;
+
     return (
         <Layout>
             <Link href={`/campaigns/${address}`}>
                 <Button primary>Back</Button>
             </Link>
             <h3>Requests</h3>
+            <Button primary onClick={() => useCompletedRequestsSection(false)}>
+                Uncompleted requests
+            </Button>
+            <Button primary onClick={() => useCompletedRequestsSection(true)}>
+                Completed requests
+            </Button>
             <Link href={`/campaigns/${address}/requests/new`}>
                 <AddRequestButtonStyled primary floated="right">
                     Add Request
                 </AddRequestButtonStyled>
             </Link>
 
-            <RequestsTable
-                requests={requests}
-                approversCount={approversCount}
-                address={address}
-                requestsCount={requestsCount}
-            />
+            {!completedRequestsSection && (
+                <RequestsTable
+                    requests={uncompletedRequests}
+                    approversCount={approversCount}
+                    address={address}
+                    requestsCount={uncompletedRequestsFound}
+                />
+            )}
+            {completedRequestsSection && (
+                <RequestsTable
+                    requests={completedRequests}
+                    approversCount={approversCount}
+                    address={address}
+                    requestsCount={completedRequestsFound}
+                />
+            )}
+            
         </Layout>
     );
 };
