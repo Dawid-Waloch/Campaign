@@ -27,6 +27,7 @@ contract Campaign {
     address public manager;
     uint public minimumContribution;
     mapping(address => bool) public approvers;
+    mapping(address => uint) public approversContributedAmount;
     Request[] public requests;
     uint public approversCount;
 
@@ -36,10 +37,11 @@ contract Campaign {
     }
 
     function contribute() public payable minimumDonation {
-        require(!approvers[msg.sender], "Already contributed");
-
-        approvers[msg.sender] = true;
-        approversCount++;
+        if(!approvers[msg.sender]) {
+            approvers[msg.sender] = true;
+            approversCount++;
+        }
+        approversContributedAmount[msg.sender] = msg.value;
     }
 
     function createRequest(string memory description, uint value, address recipient) public onlyManager {
