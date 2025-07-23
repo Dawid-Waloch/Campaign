@@ -67,6 +67,7 @@ contract Campaign {
 
         require(!request.complete, "Request already completed");
         require(request.approvalCount * 2 >= approversCount, "Not enough approvals");
+        require(address(this).balance >= request.value, "Not enough ethers in contract to finalize request which has this value");
 
         payable(request.recipient).transfer(request.value);
         request.complete = true;
