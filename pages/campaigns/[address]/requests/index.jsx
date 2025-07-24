@@ -21,7 +21,8 @@ export const getServerSideProps = async (context) => {
             }),
     );
 
-    const requests = requestsRaw.map((request) => ({
+    const requests = requestsRaw.map((request, index) => ({
+        index: index,
         description: request.description,
         value: request.value.toString(),
         recipient: request.recipient,

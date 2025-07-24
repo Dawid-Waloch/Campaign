@@ -76,16 +76,16 @@ const RequestsTable = ({
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {requests.map((request, index) => (
+                    {requests.map((request) => (
                         <TableRow
-                            key={index}
+                            key={request.index}
                             disabled={request.complete}
                             positive={
                                 request.approvalCount > approversCount / 2 &&
                                 !request.complete
                             }
                         >
-                            <TableCell>{index}</TableCell>
+                            <TableCell>{request.index}</TableCell>
                             <TableCell>{request.description}</TableCell>
                             <TableCell>
                                 {web3.utils.fromWei(
@@ -102,8 +102,8 @@ const RequestsTable = ({
                                     <Button
                                         color="green"
                                         basic
-                                        onClick={() => onApprove(index)}
-                                        loading={loadingApproveIndex === index}
+                                        onClick={() => onApprove(request.index)}
+                                        loading={loadingApproveIndex === request.index}
                                     >
                                         Approve
                                     </Button>
@@ -114,8 +114,8 @@ const RequestsTable = ({
                                     <Button
                                         color="teal"
                                         basic
-                                        onClick={() => onFinalize(index)}
-                                        loading={loadingFinalizeIndex === index}
+                                        onClick={() => onFinalize(request.index)}
+                                        loading={loadingFinalizeIndex === request.index}
                                     >
                                         Finalize
                                     </Button>
