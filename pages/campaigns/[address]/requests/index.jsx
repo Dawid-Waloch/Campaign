@@ -34,13 +34,12 @@ export const getServerSideProps = async (context) => {
         props: {
             address: address,
             requests: requests,
-            requestsCount: requestsCount.toString(),
             approversCount: approversCount.toString(),
         },
     };
 };
 
-const RequestIndex = ({ address, requests, approversCount, requestsCount }) => {
+const RequestIndex = ({ address, requests, approversCount }) => {
     const [completedRequestsSection, useCompletedRequestsSection] = useState(false)
     const completedRequests = requests.filter((request) => request.complete);
     const completedRequestsFound = completedRequests.length;
